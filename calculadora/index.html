@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f4f5f9">
+    <meta name="description" content="Uma calculadora moderna e científica para o dia a dia.">
+    <title>Calculadora — simples, do seu jeito</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="Script.js" defer></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="Calculadora, início">
+          <span class="brand-mark" aria-hidden="true">÷</span>
+          <span>calcula<span class="brand-light">.</span></span>
+        </a>
+        <span class="topbar-note"><span class="online-dot"></span> Seu espaço de cálculo</span>
+      </header>
+
+      <section class="workspace" aria-label="Calculadora">
+        <div class="calculator card">
+          <div class="calculator-heading">
+            <div>
+              <p class="eyebrow">PRECISÃO, SEM COMPLICAÇÃO</p>
+              <h1>Calculadora</h1>
+            </div>
+            <button class="mode-button" id="scientific-toggle" type="button" aria-expanded="false" aria-controls="scientific-keys">
+              <span aria-hidden="true">ƒx</span>
+              Científica
+            </button>
+          </div>
+
+          <div class="display" aria-live="polite" aria-atomic="true">
+            <div class="display-meta">
+              <span id="angle-mode">DEG</span>
+              <span id="display-message">Pronta para calcular</span>
+            </div>
+            <div class="expression" id="expression" aria-label="Expressão">0</div>
+            <div class="result-row">
+              <span class="equals-mark">=</span>
+              <output class="result" id="result" aria-label="Resultado">0</output>
+              <button class="copy-button" id="copy-result" type="button" aria-label="Copiar resultado" title="Copiar resultado">
+                <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="7" y="7" width="9" height="10" rx="2"></rect><path d="M13 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h2"></path></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="scientific-keys" id="scientific-keys" hidden>
+            <div class="scientific-toolbar">
+              <span>FUNÇÕES CIENTÍFICAS</span>
+              <div class="scientific-options">
+                <button type="button" id="second-toggle" class="angle-button" aria-pressed="false">2nd</button>
+                <button type="button" id="angle-toggle" class="angle-button" aria-label="Alternar entre graus e radianos">Graus <span>DEG</span></button>
+              </div>
+            </div>
+            <div class="scientific-grid">
+              <button class="key key-science" data-value="sin(" data-inverse="asin(">sin</button>
+              <button class="key key-science" data-value="cos(" data-inverse="acos(">cos</button>
+              <button class="key key-science" data-value="tan(" data-inverse="atan(">tan</button>
+              <button class="key key-science" data-value="log(">log</button>
+              <button class="key key-science" data-value="ln(">ln</button>
+              <button class="key key-science" data-value="sqrt(">√</button>
+              <button class="key key-science" data-value="cbrt(">∛</button>
+              <button class="key key-science" data-value="abs(">|x|</button>
+              <button class="key key-science" data-value="(">(</button>
+              <button class="key key-science" data-value=")">)</button>
+              <button class="key key-science" data-value="pi">π</button>
+              <button class="key key-science" data-value="e">e</button>
+              <button class="key key-science" data-value="^2">x²</button>
+              <button class="key key-science" data-value="^">xʸ</button>
+              <button class="key key-science" data-value="!">n!</button>
+              <button class="key key-science" data-value="exp(">eˣ</button>
+              <button class="key key-science" data-value="mod">mod</button>
+              <button class="key key-science" data-value="ans">ANS</button>
+            </div>
+          </div>
+
+          <div class="keypad" id="keypad" aria-label="Teclado da calculadora">
+            <button class="key key-utility" data-action="clear">AC</button>
+            <button class="key key-utility" data-action="delete" aria-label="Apagar último caractere">⌫</button>
+            <button class="key key-utility" data-value="%">%</button>
+            <button class="key key-operator" data-value="/">÷</button>
+
+            <button class="key" data-value="7">7</button>
+            <button class="key" data-value="8">8</button>
+            <button class="key" data-value="9">9</button>
+            <button class="key key-operator" data-value="*">×</button>
+
+            <button class="key" data-value="4">4</button>
+            <button class="key" data-value="5">5</button>
+            <button class="key" data-value="6">6</button>
+            <button class="key key-operator" data-value="-">−</button>
+
+            <button class="key" data-value="1">1</button>
+            <button class="key" data-value="2">2</button>
+            <button class="key" data-value="3">3</button>
+            <button class="key key-operator" data-value="+">+</button>
+
+            <button class="key key-utility" data-action="sign">+/−</button>
+            <button class="key" data-value="0">0</button>
+            <button class="key" data-value=".">,</button>
+            <button class="key key-equals" data-action="equals" aria-label="Calcular resultado">=</button>
+          </div>
+          <p class="keyboard-hint">Dica: use o teclado para digitar <kbd>Enter</kbd> para calcular</p>
+        </div>
+
+        <aside class="history card" aria-label="Histórico de cálculos">
+          <div class="history-heading">
+            <div>
+              <p class="eyebrow">SEUS CÁLCULOS</p>
+              <h2>Histórico</h2>
+            </div>
+            <button id="clear-history" class="clear-history" type="button" aria-label="Limpar histórico" title="Limpar histórico">Limpar</button>
+          </div>
+          <div class="history-list" id="history-list">
+            <div class="empty-history">
+              <span class="history-icon" aria-hidden="true">↗</span>
+              <p>Seus cálculos aparecem aqui.</p>
+              <span>Faça uma conta para começar.</span>
+            </div>
+          </div>
+          <div class="history-footer">
+            <span class="online-dot"></span>
+            <span>Salvo nesta sessão</span>
+          </div>
+        </aside>
+      </section>
+
+      <footer class="footer">
+        <span>Feita para deixar os números mais leves.</span>
+        <span>Simples por fora, completa por dentro <span class="footer-sparkle">✳</span></span>
+      </footer>
+    </main>
+  </body>
+</html>
